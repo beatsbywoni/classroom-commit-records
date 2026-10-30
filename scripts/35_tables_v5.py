@@ -21,7 +21,11 @@ def f(x, k=2):
     t = f"{x:+.{k}f}"
     if float(t) == 0: t = f"{0:.{k}f}"
     return "$" + t + "$"
-def ci(a, k=2): return f"$[{a[0]:+.{k}f}, {a[1]:+.{k}f}]$"
+def _end(x, k):
+    """Interval endpoint; an endpoint that rounds to zero is printed with one more decimal so that its side of zero is visible."""
+    t = f"{x:+.{k}f}"
+    return f"{x:+.{k + 1}f}" if float(t) == 0 else t
+def ci(a, k=2): return f"$[{_end(a[0], k)}, {_end(a[1], k)}]$"
 def pv(p):
     if p < 0.001: return "$<$.001"
     return f"{p:.3f}".lstrip("0") if p < 0.995 else ".99"
@@ -64,7 +68,7 @@ if __name__ == "__main__":
             lo = b["loo"][c]; pr = b["paired"][c]
             L.append(f"{NAME[c]} & {f(min(lo))}/{f(max(lo))} & {f(b['drop_top5'][c])} & {within_cell(b, ww, c)} & {pv(b['within'][c]['p_wild'])} & {f(pr['median_d'])}, {pr['n_positive']}" + (f" of {pr['n_orgs']}" if pr["n_orgs"] != spanning else "") + r" \\")
         L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write(name, L)
-    full_table("tab_era_full", era, WW["era"], f"Post-ChatGPT minus pre-ChatGPT, full results ({era['n']:,} repositories, {era['orgs']} organizations; {era['n_pre']:,} pre, {era['n_post']:,} post). Cov.: all repositories with the covariates and no organization term. Capped estimates with their 90\\% organization-bootstrap intervals (1,000 replicates) on the second line. Lower part: random-intercept estimates leaving out each of the ten largest organizations (minimum and maximum) and the five largest together; within-organization comparison on the {d['spanning_orgs']} organizations observed in both eras with its wild-bootstrap $p$; organization-level paired median and the number of organizations in which the post mean is higher.", "tab:era", d["spanning_orgs"], SIG6)
+    full_table("tab_era_full", era, WW["era"], f"Post-ChatGPT minus pre-ChatGPT, full results ({era['n']:,} repositories, {era['orgs']} organizations; {era['n_pre']:,} pre, {era['n_post']:,} post). Cov.: all repositories with the covariates and no organization term. RI ($p$): organization random intercepts with the uncorrected $p$-value (the text reports Holm-corrected values where significance is claimed). Capped estimates with their 90\\% organization-bootstrap intervals (1,000 replicates) on the second line. Lower part: random-intercept estimates leaving out each of the ten largest organizations (minimum and maximum) and the five largest together; within-organization comparison on the {d['spanning_orgs']} organizations observed in both eras with its wild-bootstrap $p$; organization-level paired median and the number of organizations in which the post mean is higher.", "tab:era", d["spanning_orgs"], SIG6)
     full_table("tab_agent_full", ag, WW["agent"], f"Agentic era (February 2025 onward) minus early post (January 2023 to January 2025), full results ({ag['n']:,} repositories, {ag['orgs']} organizations; {ag['n_pre']:,} early post, {ag['n_post']:,} agentic). Columns as in Table~\\ref{{tab:era}}; within-organization and paired comparisons on the {d['agent_spanning_orgs']} organizations observed in both periods ({d['agent_spanning_repos']} repositories, {d['agent_spanning_sizes'][0]} in one organization); the test inversion found no bound within the searched range (50 bootstrap standard errors on each side of the estimate).", "tab:agent", d["agent_spanning_orgs"], SIG6)
     # ---- appendix: restricted comparisons ----
     L = [r"\begin{table}[h]", r"\caption{Comparisons restricted with respect to the platform change (Section~\ref{sec:restricted}). A and B: post-ChatGPT minus pre-ChatGPT, keeping post-era repositories created before the general release of fork-based creation (July 1, 2024) or before its beta (January 1, 2024). C: agentic era minus early post, keeping repositories without a Classroom-bot root commit that adds 20 or more lines. Capped estimates with 90\% organization-bootstrap intervals (1,000 replicates).}",
@@ -155,7 +159,7 @@ if __name__ == "__main__":
     L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_msg", L)
     # ---- supplementary: trailers ----
     T = J("results_trailer_v4.json"); SIG7 = SIG6 + [MSG]
-    L = [r"\begin{table}[h]", r"\caption{Supplementary: AI-trailer and human-co-author-trailer repositories versus other repositories, first commits 2024 onward, from Equation~\ref{eq:trailer} with organization random intercepts and year fixed effects. Difference: $\beta_{\mathrm{AI}} - \beta_{\mathrm{H}}$ in SD units with 95\% half-width; $p$ uncorrected and Holm-corrected over the signals. FE: the same difference with organization fixed effects and its wild-cluster-bootstrap $p$ (1,999 replicates).}", r"\label{tab:trailer}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}"]
+    L = [r"\begin{table}[h]", r"\caption{Supplementary: AI-trailer and human-co-author-trailer repositories versus other repositories, first commits 2024 onward, from Equation~\ref{eq:trailer} with organization random intercepts and year fixed effects; full frame: repositories with five or more classified commits; primary sample: three or more. Difference: $\beta_{\mathrm{AI}} - \beta_{\mathrm{H}}$ in SD units with 95\% half-width; $p$ uncorrected and Holm-corrected over the signals. FE: the same difference with organization fixed effects and its wild-cluster-bootstrap $p$ (1,999 replicates).}", r"\label{tab:trailer}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}"]
     for kk, title in (("full_frame_ge5", "Full frame"), ("primary", "Primary sample")):
         t = T[kk]
         L += [r"\begin{tabular}{@{}l l l l l l@{}}", r"\toprule", r"\multicolumn{6}{@{}l}{" + f"{title} ({t['n']:,} repositories, {t['orgs']} organizations; {t['ai']} with AI trailers, {t['human']} with human co-author trailers only)" + r"} \\",
