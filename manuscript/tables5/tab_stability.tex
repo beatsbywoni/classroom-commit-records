@@ -1,0 +1,29 @@
+\begin{table}[h]
+\caption{Stability of the capped estimate (cap 50): reported estimate (200 draws), estimate from 1,000 draws, and a repetition of the whole procedure with a new random stream; 90\% organization-bootstrap intervals as reported and in the repetition; for comparison only, the interval from the multiple-imputation combining rule; and the between-draw standard deviation relative to the bootstrap standard error.}
+\label{tab:stability}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l r r r l l l r@{}}
+\toprule
+Signal & $d$ & $d_{1000}$ & Rep. & Bootstrap & Bootstrap, rep. & Rubin & $s_{\text{draw}}/s_{\text{boot}}$ \\
+\midrule
+\multicolumn{8}{@{}l}{Post-ChatGPT $-$ pre} \\
+\midrule
+Edit size & $-0.03$ & $-0.04$ & $-0.03$ & $[-0.17, +0.11]$ & $[-0.17, +0.12]$ & $[-0.15, +0.09]$ & 0.58 \\
+Large-insert share & $0.00$ & $0.00$ & $0.00$ & $[-0.12, +0.12]$ & $[-0.11, +0.11]$ & $[-0.11, +0.10]$ & 0.52 \\
+Burst share & $+0.08$ & $+0.08$ & $+0.08$ & $[-0.07, +0.21]$ & $[-0.06, +0.21]$ & $[-0.05, +0.21]$ & 0.49 \\
+Same-file reruns & $+0.02$ & $+0.02$ & $+0.02$ & $[-0.003, +0.05]$ & $[-0.003, +0.04]$ & $[-0.03, +0.06]$ & 1.29 \\
+Test-path touches & $-0.09$ & $-0.09$ & $-0.09$ & $[-0.21, +0.02]$ & $[-0.21, +0.03]$ & $[-0.21, +0.03]$ & 0.43 \\
+Time dispersion & $-0.02$ & $-0.01$ & $-0.01$ & $[-0.10, +0.08]$ & $[-0.10, +0.08]$ & $[-0.12, +0.08]$ & 0.41 \\
+\midrule
+\multicolumn{8}{@{}l}{Agentic era $-$ early post} \\
+\midrule
+Edit size & $+0.05$ & $+0.05$ & $+0.05$ & $[-0.08, +0.19]$ & $[-0.10, +0.18]$ & $[-0.09, +0.20]$ & 0.33 \\
+Large-insert share & $+0.06$ & $+0.06$ & $+0.06$ & $[-0.07, +0.18]$ & $[-0.07, +0.17]$ & $[-0.08, +0.20]$ & 0.36 \\
+Burst share & $+0.17$ & $+0.18$ & $+0.17$ & $[+0.04, +0.35]$ & $[+0.02, +0.34]$ & $[-0.002, +0.35]$ & 0.34 \\
+Same-file reruns & $+0.02$ & $+0.02$ & $+0.01$ & $[-0.02, +0.07]$ & $[-0.02, +0.07]$ & $[-0.06, +0.09]$ & 1.39 \\
+Test-path touches & $+0.08$ & $+0.07$ & $+0.07$ & $[-0.18, +0.31]$ & $[-0.19, +0.31]$ & $[-0.11, +0.27]$ & 0.36 \\
+Time dispersion & $+0.07$ & $+0.07$ & $+0.07$ & $[-0.09, +0.19]$ & $[-0.09, +0.19]$ & $[-0.07, +0.21]$ & 0.27 \\
+\bottomrule
+\end{tabular}
+\end{table}

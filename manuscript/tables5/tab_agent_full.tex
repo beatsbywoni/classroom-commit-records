@@ -1,0 +1,39 @@
+\begin{table}[h]
+\caption{Agentic era (February 2025 onward) minus early post (January 2023 to January 2025), full results (2,875 repositories, 230 organizations; 1,608 early post, 1,267 agentic). Columns as in Table~\ref{tab:era}; within-organization and paired comparisons on the 6 organizations observed in both periods (600 repositories, 542 in one organization); the test inversion found no bound within the searched range (50 bootstrap standard errors on each side of the estimate).}
+\label{tab:agent}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l r r c c c r@{}}
+\toprule
+Signal & Raw & Cov. & Cap 25 & Cap 50 & Cap 100 & RI ($p$) \\
+\midrule
+Edit size & $+0.27$ & $+0.24$ & $+0.06$ & $+0.05$ & $+0.03$ & $+0.02$ (.766) \\
+ & & & $[-0.08, +0.20]$ & $[-0.08, +0.19]$ & $[-0.08, +0.17]$ & \\[2pt]
+Large-insert share & $+0.48$ & $+0.44$ & $+0.06$ & $+0.06$ & $+0.07$ & $+0.14$ (.021) \\
+ & & & $[-0.07, +0.18]$ & $[-0.07, +0.18]$ & $[-0.07, +0.19]$ & \\[2pt]
+Burst share & $-0.37$ & $-0.35$ & $+0.20$ & $+0.17$ & $+0.15$ & $+0.11$ (.111) \\
+ & & & $[+0.05, +0.36]$ & $[+0.04, +0.35]$ & $[+0.02, +0.33]$ & \\[2pt]
+Same-file reruns & $+0.06$ & $+0.07$ & $+0.01$ & $+0.02$ & $+0.04$ & $+0.07$ (.094) \\
+ & & & $[-0.02, +0.05]$ & $[-0.02, +0.07]$ & $[-0.02, +0.10]$ & \\[2pt]
+Test-path touches & $+0.10$ & $+0.24$ & $+0.02$ & $+0.08$ & $+0.15$ & $+0.45$ ($<$.001) \\
+ & & & $[-0.19, +0.23]$ & $[-0.18, +0.31]$ & $[-0.20, +0.39]$ & \\[2pt]
+Time dispersion & $+0.07$ & $+0.08$ & $+0.05$ & $+0.07$ & $+0.07$ & $0.00$ (.99) \\
+ & & & $[-0.11, +0.18]$ & $[-0.09, +0.19]$ & $[-0.09, +0.19]$ & \\[2pt]
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{@{}l l r l r l@{}}
+\toprule
+Signal & LOO min/max & Drop 5 & Within [90\% CI] & $p_{\text{wild}}$ & Paired median, $+/6$ \\
+\midrule
+Edit size & $+0.01$/$+0.09$ & $+0.05$ & $+0.14$, none in $[-2.7, +3.0]$ & .141 & $+0.24$, 3 \\
+Large-insert share & $+0.02$/$+0.21$ & $+0.03$ & $+0.33$, none in $[-1.2, +1.9]$ & .441 & $-0.18$, 1 \\
+Burst share & $+0.11$/$+0.22$ & $+0.25$ & $+0.19$, none in $[-1.2, +1.6]$ & .212 & $+0.30$, 4 \\
+Same-file reruns & $+0.05$/$+0.09$ & $-0.19$ & $+0.11$, none in $[-0.5, +0.7]$ & .431 & $-0.01$, 2 \\
+Test-path touches & $-0.05$/$+0.59$ & $-0.02$ & $+0.79$, none in $[-7.6, +9.2]$ & .643 & $0.00$, 1 \\
+Time dispersion & $-0.03$/$+0.10$ & $+0.07$ & $-0.27$, none in $[-1.7, +1.2]$ & .408 & $-0.07$, 2 of 5 \\
+\bottomrule
+\end{tabular}
+\end{table}

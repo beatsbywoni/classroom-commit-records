@@ -1,0 +1,56 @@
+\begin{table}[h]
+\caption{Comparisons restricted with respect to the platform change (Section~\ref{sec:restricted}). A and B: post-ChatGPT minus pre-ChatGPT, keeping post-era repositories created before the general release of fork-based creation (July 1, 2024) or before its beta (January 1, 2024). C: agentic era minus early post, keeping repositories without a Classroom-bot root commit that adds 20 or more lines. Capped estimates with 90\% organization-bootstrap intervals (1,000 replicates).}
+\label{tab:regime}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l r r c c c r@{}}
+\toprule
+Signal & Raw & Cov. & Cap 25 & Cap 50 & Cap 100 & RI \\
+\midrule
+\multicolumn{7}{@{}l}{A. Post era created before July 2024 (3,610 repositories, 257 organizations; 2,066 and 1,544)} \\
+\midrule
+Edit size & $+0.06$ & $0.00$ & $-0.05$ & $-0.11$ & $-0.19$ & $-0.40$ \\
+ & & & $[-0.18, +0.08]$ & $[-0.28, +0.07]$ & $[-0.38, +0.03]$ & \\[2pt]
+Large-insert share & $+0.02$ & $-0.03$ & $-0.05$ & $-0.10$ & $-0.15$ & $-0.31$ \\
+ & & & $[-0.17, +0.06]$ & $[-0.23, +0.04]$ & $[-0.30, +0.02]$ & \\[2pt]
+Burst share & $+0.19$ & $+0.18$ & $-0.03$ & $+0.05$ & $+0.12$ & $+0.32$ \\
+ & & & $[-0.19, +0.12]$ & $[-0.13, +0.19]$ & $[-0.10, +0.29]$ & \\[2pt]
+Same-file reruns & $+0.07$ & $+0.04$ & $+0.04$ & $+0.03$ & $+0.02$ & $+0.01$ \\
+ & & & $[-0.001, +0.08]$ & $[-0.01, +0.07]$ & $[-0.02, +0.07]$ & \\[2pt]
+Test-path touches & $-0.20$ & $-0.22$ & $-0.12$ & $-0.12$ & $-0.12$ & $-0.26$ \\
+ & & & $[-0.27, +0.04]$ & $[-0.28, +0.04]$ & $[-0.29, +0.02]$ & \\[2pt]
+Time dispersion & $-0.12$ & $-0.11$ & $-0.03$ & $-0.05$ & $-0.05$ & $-0.12$ \\
+ & & & $[-0.15, +0.08]$ & $[-0.16, +0.07]$ & $[-0.15, +0.05]$ & \\[2pt]
+\midrule
+\multicolumn{7}{@{}l}{B. Post era created before January 2024 (3,102 repositories, 230 organizations; 2,066 and 1,036)} \\
+\midrule
+Edit size & $+0.17$ & $+0.04$ & $-0.07$ & $-0.17$ & $-0.26$ & $-0.46$ \\
+ & & & $[-0.22, +0.06]$ & $[-0.34, +0.02]$ & $[-0.43, -0.05]$ & \\[2pt]
+Large-insert share & $+0.15$ & $+0.04$ & $-0.10$ & $-0.17$ & $-0.23$ & $-0.39$ \\
+ & & & $[-0.23, +0.03]$ & $[-0.29, -0.01]$ & $[-0.35, -0.08]$ & \\[2pt]
+Burst share & $+0.05$ & $+0.02$ & $+0.03$ & $+0.12$ & $+0.21$ & $+0.40$ \\
+ & & & $[-0.16, +0.19]$ & $[-0.10, +0.31]$ & $[-0.04, +0.39]$ & \\[2pt]
+Same-file reruns & $+0.12$ & $+0.05$ & $+0.03$ & $+0.02$ & $+0.01$ & $+0.01$ \\
+ & & & $[-0.01, +0.08]$ & $[-0.02, +0.08]$ & $[-0.03, +0.06]$ & \\[2pt]
+Test-path touches & $-0.13$ & $-0.16$ & $-0.13$ & $-0.12$ & $-0.11$ & $-0.27$ \\
+ & & & $[-0.31, +0.03]$ & $[-0.29, +0.04]$ & $[-0.29, +0.03]$ & \\[2pt]
+Time dispersion & $-0.09$ & $-0.07$ & $-0.02$ & $-0.02$ & $-0.02$ & $-0.10$ \\
+ & & & $[-0.14, +0.10]$ & $[-0.14, +0.09]$ & $[-0.14, +0.09]$ & \\[2pt]
+\midrule
+\multicolumn{7}{@{}l}{C. Agentic era, no Classroom-bot starter commit (1,522 repositories, 146 organizations; 339 and 1,183)} \\
+\midrule
+Edit size & $+0.70$ & $+0.66$ & $+0.06$ & $+0.11$ & $+0.17$ & $+0.20$ \\
+ & & & $[-0.21, +0.26]$ & $[-0.20, +0.28]$ & $[-0.20, +0.30]$ & \\[2pt]
+Large-insert share & $+0.82$ & $+0.78$ & $+0.11$ & $+0.14$ & $+0.19$ & $+0.22$ \\
+ & & & $[-0.08, +0.28]$ & $[-0.10, +0.29]$ & $[-0.09, +0.31]$ & \\[2pt]
+Burst share & $-0.23$ & $-0.10$ & $+0.25$ & $+0.25$ & $+0.24$ & $+0.26$ \\
+ & & & $[+0.04, +0.48]$ & $[+0.06, +0.47]$ & $[+0.08, +0.46]$ & \\[2pt]
+Same-file reruns & $+0.07$ & $+0.09$ & $+0.02$ & $+0.03$ & $+0.05$ & $+0.09$ \\
+ & & & $[-0.01, +0.07]$ & $[-0.004, +0.08]$ & $[+0.001, +0.10]$ & \\[2pt]
+Test-path touches & $-0.06$ & $+0.22$ & $+0.02$ & $+0.12$ & $+0.25$ & $+0.41$ \\
+ & & & $[-0.38, +0.32]$ & $[-0.40, +0.43]$ & $[-0.32, +0.54]$ & \\[2pt]
+Time dispersion & $+0.14$ & $+0.07$ & $+0.05$ & $+0.08$ & $+0.05$ & $-0.02$ \\
+ & & & $[-0.17, +0.25]$ & $[-0.17, +0.29]$ & $[-0.18, +0.26]$ & \\[2pt]
+\bottomrule
+\end{tabular}
+\end{table}

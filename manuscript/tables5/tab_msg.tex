@@ -1,0 +1,20 @@
+\begin{table}[h]
+\caption{Supplementary: message distinctiveness, computed on all non-bot commit messages (not only classified commits), $d$, with 90\% intervals (organization bootstrap for the capped estimates; test inversion for the within-organization estimates, ``none'' where no bound was found). Subset: the repositories in which every non-bot commit is classified, so that the messages coincide with the classified commits' messages; this restriction also changes the sample.}
+\label{tab:msg}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}p{2.6cm} r c c c r c@{}}
+\toprule
+Contrast and sample & Raw & Cap 25 & Cap 50 & Cap 100 & RI & Within \\
+\midrule
+Post $-$ pre, primary & $-0.36$ & $-0.17$ & $-0.17$ & $-0.18$ & $-0.19$ & $-0.12$ \\
+ & & $[-0.26, -0.07]$ & $[-0.27, -0.07]$ & $[-0.27, -0.06]$ & & $[-0.45, +0.11]$ \\[2pt]
+Agentic $-$ early post, primary & $+0.19$ & $+0.06$ & $+0.08$ & $+0.12$ & $+0.26$ & $+0.50$ \\
+ & & $[-0.08, +0.20]$ & $[-0.06, +0.22]$ & $[-0.04, +0.25]$ & & none \\[2pt]
+Post $-$ pre, subset (4,021) & $-0.24$ & & $-0.11$ & & $-0.10$ & \\
+ & & & $[-0.21, -0.004]$ & & & \\[2pt]
+Agentic $-$ early post, subset (2,553) & $+0.24$ & & $+0.11$ & & $+0.24$ & \\
+ & & & $[-0.04, +0.24]$ & & & \\[2pt]
+\bottomrule
+\end{tabular}
+\end{table}

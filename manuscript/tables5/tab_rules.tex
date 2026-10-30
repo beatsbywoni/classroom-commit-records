@@ -1,0 +1,33 @@
+\begin{table}[h]
+\caption{Activity-rule variants: capped estimates (cap 50; 200 draws; 500 bootstrap replicates, 1,000 for the adopted rule), $d$; $^{*}$: 90\% interval excludes zero. Prev.: the previous rule. No margin: history defined as any commit before creation. Shared: every shared SHA excluded. Staff 3 and Staff 10: staff-like threshold of three and ten repositories. No staff: no staff-like rule. Strict: owner-matched commits only.}
+\label{tab:rules}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}l r r r r r r r r @{}}
+\toprule
+\multicolumn{9}{@{}l}{Post-ChatGPT $-$ pre} \\
+Signal & Adopted & Prev. & No margin & Shared & Staff 3 & Staff 10 & No staff & Strict \\
+\midrule
+Edit size & $-0.03$ & $0.00$ & $-0.06$ & $-0.04$ & $-0.04$ & $-0.03$ & $+0.07$ & $-0.23$ \\
+Large-insert share & $0.00$ & $+0.01$ & $-0.02$ & $-0.01$ & $0.00$ & $0.00$ & $+0.08$ & $-0.10$ \\
+Burst share & $+0.08$ & $+0.09$ & $+0.11$ & $+0.08$ & $+0.09$ & $+0.08$ & $+0.11$ & $+0.11$ \\
+Same-file reruns & $+0.02$ & $+0.01$ & $+0.02$ & $+0.02$ & $+0.02$ & $+0.02$ & $+0.01$ & $+0.01$ \\
+Test-path touches & $-0.09$ & $-0.10$ & $-0.09$ & $-0.09$ & $-0.07$ & $-0.09$ & $-0.09$ & $-0.24$$^{*}$ \\
+Time dispersion & $-0.02$ & $+0.02$ & $-0.02$ & $-0.02$ & $-0.02$ & $-0.01$ & $+0.02$ & $+0.06$ \\
+\midrule
+Repositories & 4,941 & 4,932 & 4,905 & 4,928 & 4,915 & 4,960 & 5,062 & 2,809 \\
+\midrule
+\multicolumn{9}{@{}l}{Agentic era $-$ early post} \\
+Signal & Adopted & Prev. & No margin & Shared & Staff 3 & Staff 10 & No staff & Strict \\
+\midrule
+Edit size & $+0.05$ & $+0.04$ & $+0.04$ & $+0.05$ & $+0.04$ & $+0.06$ & $+0.04$ & $+0.12$ \\
+Large-insert share & $+0.06$ & $+0.06$ & $+0.06$ & $+0.06$ & $+0.05$ & $+0.06$ & $+0.05$ & $+0.26$ \\
+Burst share & $+0.17$$^{*}$ & $+0.16$$^{*}$ & $+0.18$$^{*}$ & $+0.17$$^{*}$ & $+0.18$$^{*}$ & $+0.18$$^{*}$ & $+0.17$$^{*}$ & $-0.11$ \\
+Same-file reruns & $+0.02$ & $+0.02$ & $+0.02$ & $+0.01$ & $+0.02$ & $+0.02$ & $+0.02$ & $+0.02$ \\
+Test-path touches & $+0.08$ & $+0.06$ & $+0.06$ & $+0.07$ & $+0.07$ & $+0.08$ & $+0.08$ & $-0.14$ \\
+Time dispersion & $+0.07$ & $+0.05$ & $+0.07$ & $+0.07$ & $+0.07$ & $+0.07$ & $+0.06$ & $+0.04$ \\
+\midrule
+Repositories & 2,875 & 2,870 & 2,856 & 2,874 & 2,858 & 2,885 & 2,916 & 1,597 \\
+\bottomrule
+\end{tabular}
+\end{table}

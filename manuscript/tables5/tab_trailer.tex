@@ -1,0 +1,37 @@
+\begin{table}[h]
+\caption{Supplementary: AI-trailer and human-co-author-trailer repositories versus other repositories, first commits 2024 onward, from Equation~\ref{eq:trailer} with organization random intercepts and year fixed effects; full frame: repositories with five or more classified commits; primary sample: three or more. Difference: $\beta_{\mathrm{AI}} - \beta_{\mathrm{H}}$ in SD units with 95\% half-width; $p$ uncorrected and Holm-corrected over the signals. FE: the same difference with organization fixed effects and its wild-cluster-bootstrap $p$ (1,999 replicates).}
+\label{tab:trailer}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l l l l l l@{}}
+\toprule
+\multicolumn{6}{@{}l}{Full frame (1,125 repositories, 482 organizations; 517 with AI trailers, 124 with human co-author trailers only)} \\
+Signal & AI $d$ ($p$) & Human $d$ ($p$) & Difference & $p$ (Holm) & FE diff.\ ($p_{\text{wild}}$) \\
+\midrule
+Edit size & $-0.01$ (.911) & $-0.16$ (.090) & $+0.15$ $\pm$ 0.18 & .101 (.607) & $+0.27$ (.327) \\
+Large-insert share & $+0.08$ (.293) & $+0.02$ (.828) & $+0.06$ $\pm$ 0.18 & .515 (1) & $+0.26$ (.229) \\
+Burst share & $+0.34$ ($<$.001) & $+0.20$ (.051) & $+0.14$ $\pm$ 0.20 & .171 (.855) & $+0.19$ (.790) \\
+Same-file reruns & $+0.02$ (.783) & $0.00$ (.967) & $+0.02$ $\pm$ 0.21 & .869 (1) & $+0.01$ (.863) \\
+Test-path touches & $-0.04$ (.637) & $+0.04$ (.702) & $-0.08$ $\pm$ 0.20 & .434 (1) & $-0.22$ (.711) \\
+Time dispersion & $-0.18$ (.050) & $+0.20$ (.066) & $-0.38$ $\pm$ 0.21 & $<$.001 (.004) & $-0.57$ (.103) \\
+Message distinctiveness & $+0.23$ (.009) & $+0.16$ (.134) & $+0.07$ $\pm$ 0.20 & .527 (1) & $+0.16$ (.178) \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{@{}l l l l l l@{}}
+\toprule
+\multicolumn{6}{@{}l}{Primary sample (492 repositories, 9 organizations; 76 with AI trailers, 41 with human co-author trailers only)} \\
+Signal & AI $d$ ($p$) & Human $d$ ($p$) & Difference & $p$ (Holm) & FE diff.\ ($p_{\text{wild}}$) \\
+\midrule
+Edit size & $+0.04$ (.738) & $-0.19$ (.163) & $+0.23$ $\pm$ 0.32 & .156 (.938) & $+0.27$ (.525) \\
+Large-insert share & $+0.15$ (.183) & $-0.06$ (.676) & $+0.20$ $\pm$ 0.32 & .207 (.938) & $+0.24$ (.537) \\
+Burst share & $+0.40$ (.002) & $+0.14$ (.397) & $+0.26$ $\pm$ 0.37 & .171 (.938) & $+0.26$ (.448) \\
+Same-file reruns & $-0.05$ (.728) & $0.00$ (.989) & $-0.05$ $\pm$ 0.42 & .825 (.938) & $-0.04$ (.141) \\
+Test-path touches & $-0.10$ (.446) & $+0.12$ (.472) & $-0.23$ $\pm$ 0.39 & .259 (.938) & $-0.28$ (.396) \\
+Time dispersion & $-0.42$ (.003) & $+0.41$ (.020) & $-0.83$ $\pm$ 0.40 & $<$.001 ($<$.001) & $-0.85$ (.210) \\
+Message distinctiveness & $-0.12$ (.374) & $+0.06$ (.757) & $-0.18$ $\pm$ 0.41 & .389 (.938) & $-0.23$ (.102) \\
+\bottomrule
+\end{tabular}
+\end{table}

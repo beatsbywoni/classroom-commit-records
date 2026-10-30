@@ -1,0 +1,30 @@
+\begin{table}
+\caption{Era comparisons on the six signals computed from classified commits, in standardized units ($d$). All repositories: raw difference in means. Capped: random-intercept model fitted with each organization limited to 25, 50, and 100 repositories (mean of 200 draws), with the organization-bootstrap 90\% interval at 50. RI: organization random intercepts on all repositories, and in parentheses the same estimate without the largest organization. Within: organization fixed effects on the organizations observed in both periods, with the 90\% interval from inverting a wild cluster bootstrap test; where the inversion found no bound, the searched range is given. Full results in Appendix~\ref{app:sens}.}
+\label{tab:main}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}l r c c r l@{}}
+\toprule
+Signal & All & Capped & Cap 50, & RI & Within \\
+ & repos. & 25 / 50 / 100 & 90\% CI & (w/o largest) & [90\% CI] \\
+\midrule
+\multicolumn{6}{@{}l}{A. Post-ChatGPT minus pre (4,941 repositories, 391 organizations; within: 14 organizations)} \\
+\midrule
+Edit size & $+0.17$ & $+0.02$ / $-0.03$ / $-0.11$ & $[-0.17, +0.11]$ & $-0.33$ ($-0.04$) & $-0.42$ $[-0.61, +0.04]$ \\
+Large-insert share & $+0.24$ & $+0.04$ / $0.00$ / $-0.05$ & $[-0.12, +0.12]$ & $-0.21$ ($+0.03$) & $-0.31$ $[-0.48, +0.08]$ \\
+Burst share & $+0.03$ & $+0.05$ / $+0.08$ / $+0.12$ & $[-0.07, +0.21]$ & $+0.32$ ($+0.03$) & $+0.44$ $[-0.17, +0.73]$ \\
+Same-file reruns & $+0.05$ & $+0.01$ / $+0.02$ / $+0.02$ & $[-0.003, +0.05]$ & $+0.05$ ($+0.05$) & $+0.04$ $[-0.03, +0.07]$ \\
+Test-path touches & $-0.17$ & $-0.10$ / $-0.09$ / $-0.08$ & $[-0.21, +0.02]$ & $-0.20$ ($+0.01$) & $-0.33$ $[-0.58, +0.04]$ \\
+Time dispersion & $-0.09$ & $0.00$ / $-0.02$ / $-0.02$ & $[-0.10, +0.08]$ & $-0.10$ ($-0.03$) & $-0.08$ $[-0.21, +0.38]$ \\
+\midrule
+\multicolumn{6}{@{}l}{B. Agentic era minus early post (2,875 repositories, 230 organizations; within: 6 organizations)} \\
+\midrule
+Edit size & $+0.27$ & $+0.06$ / $+0.05$ / $+0.03$ & $[-0.08, +0.19]$ & $+0.02$ ($+0.02$) & $+0.14$, none in $[-2.7, +3.0]$ \\
+Large-insert share & $+0.48$ & $+0.06$ / $+0.06$ / $+0.07$ & $[-0.07, +0.18]$ & $+0.14$ ($+0.02$) & $+0.33$, none in $[-1.2, +1.9]$ \\
+Burst share & $-0.37$ & $+0.20$ / $+0.17$ / $+0.15$ & $[+0.04, +0.35]$ & $+0.11$ ($+0.22$) & $+0.19$, none in $[-1.2, +1.6]$ \\
+Same-file reruns & $+0.06$ & $+0.01$ / $+0.02$ / $+0.04$ & $[-0.02, +0.07]$ & $+0.07$ ($+0.08$) & $+0.11$, none in $[-0.5, +0.7]$ \\
+Test-path touches & $+0.10$ & $+0.02$ / $+0.08$ / $+0.15$ & $[-0.18, +0.31]$ & $+0.45$ ($-0.05$) & $+0.79$, none in $[-7.6, +9.2]$ \\
+Time dispersion & $+0.07$ & $+0.05$ / $+0.07$ / $+0.07$ & $[-0.09, +0.19]$ & $0.00$ ($+0.10$) & $-0.27$, none in $[-1.7, +1.2]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
