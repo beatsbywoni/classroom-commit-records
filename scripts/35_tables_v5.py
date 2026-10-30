@@ -46,7 +46,12 @@ if __name__ == "__main__":
     era = J("results_v4_era.json")["era"]; ag = J("results_v4_agent.json")["agent"]; d = J("results_v4_descriptives.json")
     WW = J("results_v4_within_wide.json")["within_wide"]
     # ---- main table: both contrasts, six signals ----
-    L = [r"\begin{table}", r"\caption{Era comparisons on the six signals computed from classified commits, in standardized units ($d$): every coefficient and interval in a panel is divided by the same standard deviation, that of the signal in the panel's analysis sample, so the columns share one unit. Analysis $N$ per signal: in A, 4,940 for edit size and large-insert share, 4,941 for the next three, and 4,106 for time dispersion (defined for four or more commits); in B, 2,875, and 2,399 for time dispersion. All repositories: raw difference in means. Capped: random-intercept model fitted with each organization limited to 25, 50, and 100 repositories (mean of 200 draws), with the organization-bootstrap 90\% interval at 50. RI: organization random intercepts on all repositories, and in parentheses the same estimate without the largest organization. Within: organization fixed effects on the organizations observed in both periods, with the 90\% interval from inverting a wild cluster bootstrap test; where the inversion found no bound, the searched range is given. Full results in Appendix~\ref{app:sens}.}",
+    _NS = J("results_v5_sdref.json")["n_signal"]
+    def _nsig(fam):
+        groups = {}
+        for c in SIG6: groups.setdefault(_NS[fam][c], []).append(NAME[c].lower())
+        return "; ".join(f"{n:,} ({', '.join(v)})" for n, v in groups.items())
+    L = [r"\begin{table}", r"\caption{Era comparisons on the six signals computed from classified commits, in standardized units ($d$). Within a panel, every estimate and interval for a signal is divided by one standard deviation, that of the signal in the panel's analysis sample (Section~\ref{sec:estimands}). Analysis $N$: A, " + _nsig("era") + r"; B, " + _nsig("agent") + r". Columns are the comparisons of Section~\ref{sec:estimands}; RI in parentheses: without the largest organization. Intervals are 90\%: organization bootstrap for the cap of 50, inverted wild cluster bootstrap test for Within, where the searched range is given if no bound was found. Full results in Appendix~\ref{app:sens}.}",
          r"\label{tab:main}", r"\scriptsize", r"\setlength{\tabcolsep}{2pt}", r"\begin{tabular}{@{}l r c c r l@{}}", r"\toprule",
          r"Signal & All & Capped & Cap 50, & RI & Within \\", r" & repos. & 25 / 50 / 100 & 90\% CI & (w/o largest) & [90\% CI] \\"]
     S = {}
@@ -92,7 +97,7 @@ if __name__ == "__main__":
         if c == "edit_size_log": return (f"{100*(math.exp(be)-1):+.0f}\\%", f"$[{100*(math.exp(lo)-1):+.0f}, {100*(math.exp(hi)-1):+.0f}]$", f"{math.expm1(m['pre']):.0f} / {math.expm1(m['post']):.0f} lines")
         if c in ("large_insert_share_200", "burst_share_30", "test_touch_share"): return (f"{100*be:+.1f} pp", f"$[{100*lo:+.1f}, {100*hi:+.1f}]$", f"{100*m['pre']:.1f}\\% / {100*m['post']:.1f}\\%")
         return (f"{be:+.3f}", f"$[{lo:+.3f}, {hi:+.3f}]$", f"{m['pre']:.3f} / {m['post']:.3f}")
-    L = [r"\begin{table}[!htbp]", r"\caption{Capped estimates (cap 50) in natural units, from the same fits and bootstrap replicates as the standardized estimates, with unadjusted means of the two periods. Edit size: percent change in the median lines per commit; means are geometric means of the per-repository median.}", r"\label{tab:natural}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Capped estimates (cap 50) in natural units, from the same fits and bootstrap replicates as the standardized estimates, with unadjusted means of the two periods. Edit size is modeled as $\log(1+M)$, where $M$ is a repository\'s median lines changed per commit; its estimate and interval are $100[\exp(\beta)-1]$, the modeled percent difference in $1+M$, and its means are $\exp(\overline{\log(1+M)})-1$ lines. The other signals are on their own scales (pp: percentage points).}", r"\label{tab:natural}",
          r"\scriptsize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{@{}l l l l l l l@{}}", r"\toprule", r" & \multicolumn{3}{l}{Post $-$ pre} & \multicolumn{3}{l}{Agentic $-$ early post} \\", r"Signal & Cap 50 & [90\% CI] & Means & Cap 50 & [90\% CI] & Means \\", r"\midrule"]
     for c in SIG6:
         a = natural(era, c); g = natural(ag, c); L.append(f"{NAME[c]} & {a[0]} & {a[1]} & {a[2]} & {g[0]} & {g[1]} & {g[2]} \\\\")
@@ -172,4 +177,44 @@ if __name__ == "__main__":
             L.append(f"{NAME[c]} & {f(v['ai_d'])} ({pv(v['ai_p'])}) & {f(v['human_d'])} ({pv(v['human_p'])}) & {f(v['diff_d'])} $\\pm$ {1.96*v['diff_se_d']:.2f} & {pv(v['diff_p'])} ({pv(v['diff_p_holm']) if v['diff_p_holm'] < 0.995 else '1'}) & {f(v['fe_diff_d'])} ({pv(v['fe_p_wild'])}) \\\\")
         L += [r"\bottomrule", r"\end{tabular}", "", r"\medskip", ""]
     L = L[:-3] + [r"\end{table}"]; write("tab_trailer", L)
+    # ---- record generation (Table 3), from 28_record_generation.py ----
+    RG = J("results_record_generation.json"); pc = lambda x: f"{100 * x:.0f}\\%"
+    rows = [r_ for r_ in RG["by_half_year"] if r_["half"] != "2026H2"]
+    late = [r_ for r_ in RG["by_half_year"] if r_["half"] == "2026H2"]
+    L = [r"\begin{table}", r"\caption{Verified Classroom repositories outside test organizations by half-year of creation. Copies: Classroom's per-assignment template copies. The next three columns give, among the other repositories, the share with no, one or two, and three or more classified commits. Primary: repositories in the primary sample, and the share whose root commit was made by the Classroom bot and adds 20 or more lines (starter). Observed: median days from creation to collection. Half-years before 2021, in which the Classroom bot authored few root commits (none before July 2020, about 10\% in the second half of 2020), and the " + (f"{late[0]['n']:,}" if late else "0") + r" repositories created from July 1 to August 5, 2026 are not shown.}",
+         r"\label{tab:recordgen}", r"\footnotesize", r"\setlength{\tabcolsep}{4pt}", r"\begin{tabular}{@{}l r r r r r r r r@{}}", r"\toprule",
+         r"Created & Verified & Copies & No classified & 1--2 & $\geq 3$ & Primary & Starter & Observed \\", r"\midrule"]
+    for r_ in rows:
+        L.append(f"{r_['half'][:4]} {r_['half'][4:]} & {r_['n']:,} & {pc(r_['copy_share'])} & {pc(r_['noncopy_zero'])} & {pc(r_['noncopy_one_two'])} & {pc(r_['noncopy_3plus'])} & {r_['primary_n']:,} & {pc(r_['primary_starter_share'])} & {r_['median_obs_days']:,.0f} \\\\")
+    L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_recordgen", L)
+    # ---- review of the adopted rule (Table 4), from 29_activity_review_v4.py ----
+    AR = J("results_activity_review_v4.json")
+    CATS = [("kept_match", "Kept, owner match"), ("kept_nomatch", "Kept, no owner match"), ("excl_history", "Excluded, pre-existing history"),
+            ("excl_push", r"Excluded, push to $\geq 5$ repositories"), ("excl_staff", "Excluded, staff-like")]
+    cell = {(c_["cat"], c_["period"], c_["orgsize"]): c_ for c_ in AR["cells"]}
+    siu = lambda d: f"{d['S']}/{d['I']}/{d['U']}"
+    L = [r"\begin{table}", r"\caption{Review of the adopted rule (Section~\ref{sec:attribution}): judgments under the review protocol for eight commits per stratum, as student work for the assignment / not student work for the assignment / undeterminable, by the rule's outcome, the period in which the repository was created, and organization size (large: the " + {8: "eight"}.get(AR["n_large_orgs"], str(AR["n_large_orgs"])) + r" organizations that hold half of the non-bot commits). Commits: non-bot commits in the category among the " + f"{AR['n_nonbot']:,}" + r" in verified repositories outside test organizations, assignment copies, and repositories created in December 2022. A dash marks an empty stratum.}",
+         r"\label{tab:review}", r"\footnotesize", r"\setlength{\tabcolsep}{4pt}", r"\begin{tabular}{@{}l r c c c c c@{}}", r"\toprule",
+         r" & & \multicolumn{2}{c}{Before Dec.\ 2022} & \multicolumn{2}{c}{From Jan.\ 2023} & \\", r"Rule outcome & Commits & Large & Small & Large & Small & Pooled \\", r"\midrule"]
+    for k_, lab in CATS:
+        cs = [siu(cell[(k_, per, sz)]) if (k_, per, sz) in cell else "--" for per in ("pre", "post") for sz in ("large", "small")]
+        L.append(f"{lab} & {AR['by_category'][k_]['pop']:,} & " + " & ".join(cs) + f" & {siu(AR['by_category'][k_])} \\\\")
+    L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_review", L)
+    # ---- checks of the previous rule (appendix), from 22_activity_audit.py ----
+    AV = J("results_activity_validation.json"); PR = AR["previous_rule_checks"]; MR = {r_["category"]: r_ for r_ in AV["manual_review"]["rows"]}
+    PREV = [("shared_before", r"Shared SHA (``inherited''), committed before creation", "shared SHA, committed before repository creation"),
+            ("shared_after", r"Shared SHA (``inherited''), committed after creation", "shared SHA, committed after repository creation"),
+            ("staff_match", "Staff-like author, owner match", "staff-like author whose identifiers match the repository name"),
+            ("staff_nomatch", "Staff-like author, no owner match", "staff-like author, no match"),
+            ("kept_before", "Kept as student, committed before creation", "retained, committed before repository creation"),
+            ("kept_nomatch_after", "Kept as student, no owner match, after creation", "retained, author does not match repository name")]
+    changed = [f"{MR[m_]['pool']:,}" for k_, _, m_ in PREV if MR[m_]["pool"] != PR[k_]["commits"]]
+    words = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+    L = [r"\begin{table}[!htbp]", r"\caption{Checks of the previous attribution rule, non-bot commits in verified Classroom repositories outside test organizations. Before creation: committer timestamp earlier than the repository's creation. Owner match: author identifiers match the repository name. Review: 20 commits drawn at random from each category and judged, under a protocol similar to that of Section~\ref{sec:attribution}, as student work in the repository, pre-existing history or instructor or platform content, or undeterminable (only the counts were recorded). The review drew on an earlier tabulation of the same categories, whose sizes differ in " + words.get(len(changed), str(len(changed))) + r" rows (" + ", ".join(changed[:-1]) + ", and " + changed[-1] + r").}",
+         r"\label{tab:activity}", r"\footnotesize", r"\setlength{\tabcolsep}{4pt}", r"\begin{tabular}{@{}p{5.6cm} r r r r@{}}", r"\toprule",
+         r"Category under the previous rule & Commits & Before creation & Owner match & Review \\", r"\midrule"]
+    for k_, lab, m_ in PREV:
+        e = PR[k_]; m = MR[m_]
+        L.append(f"{lab} & {e['commits']:,} & {pc(e['before_creation'])} & {pc(e['owner_match'])} & {m['student']}/{m['instructor_or_history']}/{m['undeterminable']} \\\\")
+    L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_activity", L)
     print("tables written to", OUT)
