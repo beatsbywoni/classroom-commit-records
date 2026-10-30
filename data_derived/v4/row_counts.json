@@ -1,0 +1,21 @@
+{
+ "signals_v4": 45816,
+ "signals_rule_v3": 46263,
+ "signals_rule_v4_d0": 44665,
+ "signals_rule_v4_nostaff": 45936,
+ "signals_rule_v4_shared": 45735,
+ "signals_rule_v4_staff10": 45860,
+ "signals_rule_v4_staff3": 45754,
+ "signals_rule_v4_strict": 6151,
+ "repo_record": 19805,
+ "repo_starter": 58516,
+ "arcs_v3": 46263,
+ "arcs_v4": 45816,
+ "arcs_v4_d0": 44665,
+ "arcs_v4_nostaff": 45936,
+ "arcs_v4_shared": 45735,
+ "arcs_v4_staff10": 45860,
+ "arcs_v4_staff3": 45754,
+ "arcs_v4_strict": 6151,
+ "commit_features": 1182599
+}
