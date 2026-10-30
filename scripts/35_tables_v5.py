@@ -15,7 +15,10 @@ NAME = {"edit_size_log": "Edit size", "large_insert_share_200": "Large-insert sh
         "burst_share_15": "Burst share, 15-minute window", "burst_share_60": "Burst share, 60-minute window", "samefile_rerun_rate_k2": "Same-file reruns, run length 2",
         "samefile_rerun_rate_k4": "Same-file reruns, run length 4", "large_insert_share_500": "Large-insert share, $\\geq 500$ lines", "max_insert_log": "Log of largest single insertion",
         "msg_len_log": "Log median message length"}
-def J(n): return json.load(open(os.path.join(V2, n)))
+def J(n):
+    """Read a result file; standardized estimates come from the common-SD version (37_common_sd.py) where it exists."""
+    n5 = n.replace("results_v4_", "results_v5_")
+    return json.load(open(os.path.join(V2, n5 if os.path.exists(os.path.join(V2, n5)) else n)))
 def f(x, k=2):
     if x is None or (isinstance(x, float) and not math.isfinite(x)): return "--"
     t = f"{x:+.{k}f}"
@@ -43,7 +46,7 @@ if __name__ == "__main__":
     era = J("results_v4_era.json")["era"]; ag = J("results_v4_agent.json")["agent"]; d = J("results_v4_descriptives.json")
     WW = J("results_v4_within_wide.json")["within_wide"]
     # ---- main table: both contrasts, six signals ----
-    L = [r"\begin{table}", r"\caption{Era comparisons on the six signals computed from classified commits, in standardized units ($d$). All repositories: raw difference in means. Capped: random-intercept model fitted with each organization limited to 25, 50, and 100 repositories (mean of 200 draws), with the organization-bootstrap 90\% interval at 50. RI: organization random intercepts on all repositories, and in parentheses the same estimate without the largest organization. Within: organization fixed effects on the organizations observed in both periods, with the 90\% interval from inverting a wild cluster bootstrap test; where the inversion found no bound, the searched range is given. Full results in Appendix~\ref{app:sens}.}",
+    L = [r"\begin{table}", r"\caption{Era comparisons on the six signals computed from classified commits, in standardized units ($d$): every coefficient and interval in a panel is divided by the same standard deviation, that of the signal in the panel's analysis sample, so the columns share one unit. Analysis $N$ per signal: in A, 4,940 for edit size and large-insert share, 4,941 for the next three, and 4,106 for time dispersion (defined for four or more commits); in B, 2,875, and 2,399 for time dispersion. All repositories: raw difference in means. Capped: random-intercept model fitted with each organization limited to 25, 50, and 100 repositories (mean of 200 draws), with the organization-bootstrap 90\% interval at 50. RI: organization random intercepts on all repositories, and in parentheses the same estimate without the largest organization. Within: organization fixed effects on the organizations observed in both periods, with the 90\% interval from inverting a wild cluster bootstrap test; where the inversion found no bound, the searched range is given. Full results in Appendix~\ref{app:sens}.}",
          r"\label{tab:main}", r"\scriptsize", r"\setlength{\tabcolsep}{2pt}", r"\begin{tabular}{@{}l r c c r l@{}}", r"\toprule",
          r"Signal & All & Capped & Cap 50, & RI & Within \\", r" & repos. & 25 / 50 / 100 & 90\% CI & (w/o largest) & [90\% CI] \\"]
     S = {}
@@ -56,7 +59,7 @@ if __name__ == "__main__":
     L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_main", L)
     # ---- appendix: full comparison tables ----
     def full_table(name, b, ww, caption, label, spanning, sigs):
-        L = [r"\begin{table}[h]", r"\caption{" + caption + "}", r"\label{" + label + "}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
+        L = [r"\begin{table}[!htbp]", r"\caption{" + caption + "}", r"\label{" + label + "}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
              r"\begin{tabular}{@{}l r r c c c r@{}}", r"\toprule", r"Signal & Raw & Cov. & Cap 25 & Cap 50 & Cap 100 & RI ($p$) \\", r"\midrule"]
         for c in sigs:
             cp = b["cap"]
@@ -71,7 +74,7 @@ if __name__ == "__main__":
     full_table("tab_era_full", era, WW["era"], f"Post-ChatGPT minus pre-ChatGPT, full results ({era['n']:,} repositories, {era['orgs']} organizations; {era['n_pre']:,} pre, {era['n_post']:,} post). Cov.: all repositories with the covariates and no organization term. RI ($p$): organization random intercepts with the uncorrected $p$-value (the text reports Holm-corrected values where significance is claimed). Capped estimates with their 90\\% organization-bootstrap intervals (1,000 replicates) on the second line. Lower part: random-intercept estimates leaving out each of the ten largest organizations (minimum and maximum) and the five largest together; within-organization comparison on the {d['spanning_orgs']} organizations observed in both eras with its wild-bootstrap $p$; organization-level paired median and the number of organizations in which the post mean is higher.", "tab:era", d["spanning_orgs"], SIG6)
     full_table("tab_agent_full", ag, WW["agent"], f"Agentic era (February 2025 onward) minus early post (January 2023 to January 2025), full results ({ag['n']:,} repositories, {ag['orgs']} organizations; {ag['n_pre']:,} early post, {ag['n_post']:,} agentic). Columns as in Table~\\ref{{tab:era}}; within-organization and paired comparisons on the {d['agent_spanning_orgs']} organizations observed in both periods ({d['agent_spanning_repos']} repositories, {d['agent_spanning_sizes'][0]} in one organization); the test inversion found no bound within the searched range (50 bootstrap standard errors on each side of the estimate).", "tab:agent", d["agent_spanning_orgs"], SIG6)
     # ---- appendix: restricted comparisons ----
-    L = [r"\begin{table}[h]", r"\caption{Comparisons restricted with respect to the platform change (Section~\ref{sec:restricted}). A and B: post-ChatGPT minus pre-ChatGPT, keeping post-era repositories created before the general release of fork-based creation (July 1, 2024) or before its beta (January 1, 2024). C: agentic era minus early post, keeping repositories without a Classroom-bot root commit that adds 20 or more lines. Capped estimates with 90\% organization-bootstrap intervals (1,000 replicates).}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Comparisons restricted with respect to the platform change (Section~\ref{sec:restricted}). A and B: post-ChatGPT minus pre-ChatGPT, keeping post-era repositories created before the general release of fork-based creation (July 1, 2024) or before its beta (January 1, 2024). C: agentic era minus early post, keeping repositories without a Classroom-bot root commit that adds 20 or more lines. Capped estimates with 90\% organization-bootstrap intervals (1,000 replicates). Standardized by the SD of each signal in the primary sample of the contrast, as in Table~\ref{tab:main}.}",
          r"\label{tab:regime}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}", r"\begin{tabular}{@{}l r r c c c r@{}}", r"\toprule", r"Signal & Raw & Cov. & Cap 25 & Cap 50 & Cap 100 & RI \\"]
     S["regime"] = {}
     for part, title in (("era_preswitch", "A. Post era created before July 2024"), ("era_prebeta", "B. Post era created before January 2024"), ("agent_nostarter", "C. Agentic era, no Classroom-bot starter commit")):
@@ -89,14 +92,14 @@ if __name__ == "__main__":
         if c == "edit_size_log": return (f"{100*(math.exp(be)-1):+.0f}\\%", f"$[{100*(math.exp(lo)-1):+.0f}, {100*(math.exp(hi)-1):+.0f}]$", f"{math.expm1(m['pre']):.0f} / {math.expm1(m['post']):.0f} lines")
         if c in ("large_insert_share_200", "burst_share_30", "test_touch_share"): return (f"{100*be:+.1f} pp", f"$[{100*lo:+.1f}, {100*hi:+.1f}]$", f"{100*m['pre']:.1f}\\% / {100*m['post']:.1f}\\%")
         return (f"{be:+.3f}", f"$[{lo:+.3f}, {hi:+.3f}]$", f"{m['pre']:.3f} / {m['post']:.3f}")
-    L = [r"\begin{table}[h]", r"\caption{Capped estimates (cap 50) in natural units, from the same fits and bootstrap replicates as the standardized estimates, with unadjusted means of the two periods. Edit size: percent change in the median lines per commit; means are geometric means of the per-repository median.}", r"\label{tab:natural}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Capped estimates (cap 50) in natural units, from the same fits and bootstrap replicates as the standardized estimates, with unadjusted means of the two periods. Edit size: percent change in the median lines per commit; means are geometric means of the per-repository median.}", r"\label{tab:natural}",
          r"\scriptsize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{@{}l l l l l l l@{}}", r"\toprule", r" & \multicolumn{3}{l}{Post $-$ pre} & \multicolumn{3}{l}{Agentic $-$ early post} \\", r"Signal & Cap 50 & [90\% CI] & Means & Cap 50 & [90\% CI] & Means \\", r"\midrule"]
     for c in SIG6:
         a = natural(era, c); g = natural(ag, c); L.append(f"{NAME[c]} & {a[0]} & {a[1]} & {a[2]} & {g[0]} & {g[1]} & {g[2]} \\\\")
     L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_natural", L)
     # ---- appendix: thresholds ----
     E = J("results_v4_extra.json")["extra"]
-    L = [r"\begin{table}[h]", r"\caption{Threshold and measure variants: organization random intercepts (RI, $d \pm$ 95\% half-width) and capped estimates at 50 (200 draws; 90\% organization-bootstrap interval, 500 replicates, 1,000 for the main rows).}", r"\label{tab:sens}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Threshold and measure variants: organization random intercepts (RI, $d \pm$ 95\% half-width) and capped estimates at 50 (200 draws; 90\% organization-bootstrap interval, 500 replicates, 1,000 for the main rows). Each variant is a different measure and is standardized by its own SD in the primary sample of the contrast.}", r"\label{tab:sens}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}",
          r"\begin{tabular}{@{}l l l l l@{}}", r"\toprule", r" & \multicolumn{2}{l}{Post $-$ pre} & \multicolumn{2}{l}{Agentic $-$ early post} \\", r"Variant & RI & Cap 50 [90\% CI] & RI & Cap 50 [90\% CI] \\", r"\midrule"]
     for c in ["burst_share_15", "burst_share_30", "burst_share_60", "samefile_rerun_rate_k2", "samefile_rerun_rate_k3", "samefile_rerun_rate_k4", "large_insert_share_200", "large_insert_share_500", "max_insert_log", "edit_size_log"]:
         cells = []
@@ -110,7 +113,7 @@ if __name__ == "__main__":
     for nm in ("ge5", "test_orgs_kept", "copies_kept", "tierAB", "full_frame_ge3"): samp[nm] = J(f"results_v4_samples_{nm}.json")["samples"][nm]
     cols = ["primary", "ge5", "test_orgs_kept", "copies_kept", "tierAB", "full_frame_ge3"]
     HD = {"primary": "Primary", "ge5": "$\\geq 5$ commits", "test_orgs_kept": "Test orgs kept", "copies_kept": "Copies kept", "tierAB": "Tier A+B", "full_frame_ge3": "Full frame"}
-    L = [r"\begin{table}[h]", r"\caption{Sample variants of the capped estimate (cap 50; 200 draws; 500 organization-bootstrap replicates, 1,000 for the primary sample), $d$; $^{*}$: 90\% interval excludes zero.}", r"\label{tab:sampsens}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{@{}l " + "r " * len(cols) + r"@{}}", r"\toprule"]
+    L = [r"\begin{table}[!htbp]", r"\caption{Sample variants of the capped estimate (cap 50; 200 draws; 500 organization-bootstrap replicates, 1,000 for the primary sample), $d$; $^{*}$: 90\% interval excludes zero. All variants are expressed in the SD of each signal in the primary sample of the contrast, so that they share the unit of Table~\ref{tab:main}.}", r"\label{tab:sampsens}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{@{}l " + "r " * len(cols) + r"@{}}", r"\toprule"]
     for k, title, b0 in (("era", "Post-ChatGPT $-$ pre", era), ("agent", "Agentic era $-$ early post", ag)):
         L += [r"\multicolumn{" + str(len(cols) + 1) + r"}{@{}l}{" + title + r"} \\", "Signal & " + " & ".join(HD[x] for x in cols) + r" \\", r"\midrule"]
         for c in SIG6:
@@ -125,7 +128,7 @@ if __name__ == "__main__":
     # ---- appendix: rules ----
     RV = [("rule_v3", "Prev."), ("rule_v4_d0", "No margin"), ("rule_v4_shared", "Shared"), ("rule_v4_staff3", "Staff 3"), ("rule_v4_staff10", "Staff 10"), ("rule_v4_nostaff", "No staff"), ("rule_v4_strict", "Strict")]
     R = {k: J(f"results_v4_{k}_rules.json") for k, _ in RV}
-    L = [r"\begin{table}[h]", r"\caption{Activity-rule variants: capped estimates (cap 50; 200 draws; 500 bootstrap replicates, 1,000 for the adopted rule), $d$; $^{*}$: 90\% interval excludes zero. Prev.: the previous rule. No margin: history defined as any commit before creation. Shared: every shared SHA excluded. Staff 3 and Staff 10: staff-like threshold of three and ten repositories. No staff: no staff-like rule. Strict: owner-matched commits only.}", r"\label{tab:rules}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}", r"\begin{tabular}{@{}l " + "r " * (len(RV) + 1) + r"@{}}", r"\toprule"]
+    L = [r"\begin{table}[!htbp]", r"\caption{Activity-rule variants: capped estimates (cap 50; 200 draws; 500 bootstrap replicates, 1,000 for the adopted rule), $d$; $^{*}$: 90\% interval excludes zero. Prev.: the previous rule. No margin: history defined as any commit before creation. Shared: every shared SHA excluded. Staff 3 and Staff 10: staff-like threshold of three and ten repositories. No staff: no staff-like rule. Strict: owner-matched commits only. All variants are expressed in the SD of each signal under the adopted rule in the primary sample of the contrast.}", r"\label{tab:rules}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}", r"\begin{tabular}{@{}l " + "r " * (len(RV) + 1) + r"@{}}", r"\toprule"]
     for k2, title, b0 in (("era", "Post-ChatGPT $-$ pre", era), ("agent", "Agentic era $-$ early post", ag)):
         L += [r"\multicolumn{" + str(len(RV) + 2) + r"}{@{}l}{" + title + r"} \\", "Signal & Adopted & " + " & ".join(t for _, t in RV) + r" \\", r"\midrule"]
         for c in SIG6:
@@ -135,7 +138,7 @@ if __name__ == "__main__":
     L[-1] = r"\bottomrule"; L += [r"\end{tabular}", r"\end{table}"]; write("tab_rules", L)
     # ---- appendix: stability ----
     st = J("results_v4_stability.json")["stability"]
-    L = [r"\begin{table}[h]", r"\caption{Stability of the capped estimate (cap 50): reported estimate (200 draws), estimate from 1,000 draws, and a repetition of the whole procedure with a new random stream; 90\% organization-bootstrap intervals as reported and in the repetition; for comparison only, the interval from the multiple-imputation combining rule; and the between-draw standard deviation relative to the bootstrap standard error.}", r"\label{tab:stability}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Stability of the capped estimate (cap 50): reported estimate (200 draws), estimate from 1,000 draws, and a repetition of the whole procedure with a new random stream; 90\% organization-bootstrap intervals as reported and in the repetition; for comparison only, the interval from an approximation to the multiple-imputation combining rule (Appendix~\ref{app:estimation}); and the between-draw standard deviation relative to the bootstrap standard error.}", r"\label{tab:stability}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
          r"\begin{tabular}{@{}l r r r l l l r@{}}", r"\toprule", r"Signal & $d$ & $d_{1000}$ & Rep. & Bootstrap & Bootstrap, rep. & Rubin & $s_{\text{draw}}/s_{\text{boot}}$ \\"]
     for k, title, b0 in (("era", "Post-ChatGPT $-$ pre", era), ("agent", "Agentic era $-$ early post", ag)):
         L += [r"\midrule", r"\multicolumn{8}{@{}l}{" + title + r"} \\", r"\midrule"]
@@ -145,7 +148,7 @@ if __name__ == "__main__":
     L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_stability", L)
     # ---- supplementary: message distinctiveness ----
     lm = J("results_v4_low_msg.json")["msg_subset"]
-    L = [r"\begin{table}[h]", r"\caption{Supplementary: message distinctiveness, computed on all non-bot commit messages (not only classified commits), $d$, with 90\% intervals (organization bootstrap for the capped estimates; test inversion for the within-organization estimates, ``none'' where no bound was found). Subset: the repositories in which every non-bot commit is classified, so that the messages coincide with the classified commits' messages; this restriction also changes the sample.}", r"\label{tab:msg}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
+    L = [r"\begin{table}[!htbp]", r"\caption{Supplementary: message distinctiveness, computed on all non-bot commit messages (not only classified commits), $d$, with 90\% intervals (organization bootstrap for the capped estimates; test inversion for the within-organization estimates, ``none'' where no bound was found). Subset: the repositories in which every non-bot commit is classified, so that the messages coincide with the classified commits' messages; this restriction also changes the sample. All estimates are expressed in the SD of message distinctiveness in the primary sample of the contrast.}", r"\label{tab:msg}", r"\scriptsize", r"\setlength{\tabcolsep}{2.5pt}",
          r"\begin{tabular}{@{}p{2.6cm} r c c c r c@{}}", r"\toprule", r"Contrast and sample & Raw & Cap 25 & Cap 50 & Cap 100 & RI & Within \\", r"\midrule"]
     for k, b, t in (("era", era, "Post $-$ pre, primary"), ("agent", ag, "Agentic $-$ early post, primary")):
         cp = b["cap"]; w = b["within"][MSG]
@@ -159,7 +162,7 @@ if __name__ == "__main__":
     L += [r"\bottomrule", r"\end{tabular}", r"\end{table}"]; write("tab_msg", L)
     # ---- supplementary: trailers ----
     T = J("results_trailer_v4.json"); SIG7 = SIG6 + [MSG]
-    L = [r"\begin{table}[h]", r"\caption{Supplementary: AI-trailer and human-co-author-trailer repositories versus other repositories, first commits 2024 onward, from Equation~\ref{eq:trailer} with organization random intercepts and year fixed effects; full frame: repositories with five or more classified commits; primary sample: three or more. Difference: $\beta_{\mathrm{AI}} - \beta_{\mathrm{H}}$ in SD units with 95\% half-width; $p$ uncorrected and Holm-corrected over the signals. FE: the same difference with organization fixed effects and its wild-cluster-bootstrap $p$ (1,999 replicates).}", r"\label{tab:trailer}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}"]
+    L = [r"\begin{table}[!htbp]", r"\caption{Supplementary: AI-trailer and human-co-author-trailer repositories versus other repositories, first commits 2024 onward, from Equation~\ref{eq:trailer} with organization random intercepts and year fixed effects; full frame: repositories with five or more classified commits; primary sample: three or more. Difference: $\beta_{\mathrm{AI}} - \beta_{\mathrm{H}}$ in SD units with 95\% half-width; $p$ uncorrected and Holm-corrected over the signals. FE: the same difference with organization fixed effects and its wild-cluster-bootstrap $p$ (1,999 replicates).}", r"\label{tab:trailer}", r"\scriptsize", r"\setlength{\tabcolsep}{3pt}"]
     for kk, title in (("full_frame_ge5", "Full frame"), ("primary", "Primary sample")):
         t = T[kk]
         L += [r"\begin{tabular}{@{}l l l l l l@{}}", r"\toprule", r"\multicolumn{6}{@{}l}{" + f"{title} ({t['n']:,} repositories, {t['orgs']} organizations; {t['ai']} with AI trailers, {t['human']} with human co-author trailers only)" + r"} \\",

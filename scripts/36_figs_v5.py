@@ -11,7 +11,10 @@ _H = os.path.dirname(os.path.abspath(__file__)); _T = next((p for p in (os.path.
 OUT = os.environ.get("OUT", os.path.join(_T, "figs")); os.makedirs(OUT, exist_ok=True)
 SIG6 = ["edit_size_log", "large_insert_share_200", "burst_share_30", "samefile_rerun_rate_k3", "test_touch_share", "time_dispersion"]
 SHORT = {"edit_size_log": "Edit size", "large_insert_share_200": "Large-insert share", "burst_share_30": "Burst share", "samefile_rerun_rate_k3": "Same-file reruns", "test_touch_share": "Test-path touches", "time_dispersion": "Time dispersion"}
-J = lambda n: json.load(open(os.path.join(V2, n)))
+def J(n):
+    """Read a result file; standardized estimates come from the common-SD version (37_common_sd.py) where it exists."""
+    n5 = n.replace("results_v4_", "results_v5_")
+    return json.load(open(os.path.join(V2, n5 if os.path.exists(os.path.join(V2, n5)) else n)))
 plt.rcParams.update({"font.size": 9})
 XL = 0.95
 fig, axes = plt.subplots(1, 2, figsize=(9.8, 4.9), sharey=True)
