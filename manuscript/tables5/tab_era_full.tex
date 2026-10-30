@@ -1,4 +1,4 @@
-\begin{table}[h]
+\begin{table}[!htbp]
 \caption{Post-ChatGPT minus pre-ChatGPT, full results (4,941 repositories, 391 organizations; 2,066 pre, 2,875 post). Cov.: all repositories with the covariates and no organization term. RI ($p$): organization random intercepts with the uncorrected $p$-value (the text reports Holm-corrected values where significance is claimed). Capped estimates with their 90\% organization-bootstrap intervals (1,000 replicates) on the second line. Lower part: random-intercept estimates leaving out each of the ten largest organizations (minimum and maximum) and the five largest together; within-organization comparison on the 14 organizations observed in both eras with its wild-bootstrap $p$; organization-level paired median and the number of organizations in which the post mean is higher.}
 \label{tab:era}
 \scriptsize
@@ -28,12 +28,12 @@ Time dispersion & $-0.09$ & $-0.07$ & $0.00$ & $-0.02$ & $-0.02$ & $-0.10$ (.018
 \toprule
 Signal & LOO min/max & Drop 5 & Within [90\% CI] & $p_{\text{wild}}$ & Paired median, $+/14$ \\
 \midrule
-Edit size & $-0.39$/$-0.04$ & $-0.04$ & $-0.42$ $[-0.61, +0.04]$ & .171 & $-0.15$, 5 \\
-Large-insert share & $-0.27$/$+0.03$ & $-0.01$ & $-0.31$ $[-0.48, +0.08]$ & .269 & $-0.02$, 5 \\
-Burst share & $+0.03$/$+0.38$ & $+0.07$ & $+0.44$ $[-0.17, +0.73]$ & .510 & $-0.27$, 6 \\
-Same-file reruns & $+0.03$/$+0.05$ & $-0.01$ & $+0.04$ $[-0.03, +0.07]$ & .380 & $0.00$, 6 \\
-Test-path touches & $-0.26$/$+0.01$ & $-0.07$ & $-0.33$ $[-0.58, +0.04]$ & .330 & $0.00$, 5 \\
-Time dispersion & $-0.12$/$-0.03$ & $+0.01$ & $-0.08$ $[-0.21, +0.38]$ & .940 & $+0.01$, 7 \\
+Edit size & $-0.39$/$-0.03$ & $-0.03$ & $-0.51$ $[-0.75, +0.04]$ & .171 & $-0.15$, 5 \\
+Large-insert share & $-0.27$/$+0.03$ & $-0.01$ & $-0.34$ $[-0.53, +0.08]$ & .269 & $-0.02$, 5 \\
+Burst share & $+0.03$/$+0.39$ & $+0.07$ & $+0.39$ $[-0.15, +0.66]$ & .510 & $-0.27$, 6 \\
+Same-file reruns & $+0.02$/$+0.05$ & $0.00$ & $+0.01$ $[-0.01, +0.03]$ & .380 & $0.00$, 6 \\
+Test-path touches & $-0.27$/$+0.01$ & $-0.07$ & $-0.34$ $[-0.60, +0.04]$ & .330 & $0.00$, 5 \\
+Time dispersion & $-0.12$/$-0.03$ & $+0.01$ & $-0.08$ $[-0.22, +0.40]$ & .940 & $+0.01$, 7 \\
 \bottomrule
 \end{tabular}
 \end{table}
