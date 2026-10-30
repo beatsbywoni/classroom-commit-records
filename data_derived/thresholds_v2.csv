@@ -1,0 +1,10 @@
+lang_family,n_pre_commits_primary,p95_add_fixed,own_cohort
+c_cpp,3827,253886.6999999998,True
+csharp,631,38471.0,True
+java_kotlin,1415,278.0,True
+js_ts,5166,2376.5,True
+notebook,5601,2458.0,True
+other,15285,601.0,True
+python,2978,194.0,True
+web_markup,5064,9239.0,True
+__fallback_pre_all__,39967,11499.299999999916,True
