@@ -143,6 +143,8 @@ if __name__ == "__main__":
     ck = J("results_v4_samples_copies_kept.json")["samples"]["copies_kept"]["agent"]
     put("copies.maxmove.cap", f"{max(abs(ck['cap50'][c]['d'] - ag['cap']['50'][c]['d']) for c in SIG6):.2f}")
     put("copies.maxmove.ri", f"{max(abs(ck['ri'][c]['d'] - ag['ri'][c]['d']) for c in SIG6):.2f}")
+    mm = max(max(abs(ck['ri'][c]['d'] - ag['ri'][c]['d']), abs(ck['cap50'][c]['d'] - ag['cap']['50'][c]['d'])) for c in SIG6)
+    put("copies.maxmove.bound", f"{math.ceil(mm * 100) / 100:.2f}")
     # full frame, era contrast: how much a cap of 50 removes
     spec = importlib.util.spec_from_file_location("A", os.path.join(HERE, "25_analysis_v4.py")); A = importlib.util.module_from_spec(spec); spec.loader.exec_module(A)
     r = A.load(A.SIG_FILE); ff = r[(r.n_commits_human >= 3) & (r.org_test == 0)].copy(); x, lab = A.contrasts(ff)["era"]
