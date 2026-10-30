@@ -1,0 +1,29 @@
+{
+ "procedure": "논문 2 v4 — 과제 사본(assignment copy) 이름 규칙의 제한 확인 (2026-10-30, 7차 작업지시서).\n이름 규칙과 독립적인 근거로 GitHub의 저장소 관계를 본다. Classroom의 과제 사본은 템플릿에서 생성되고(저장소 페이지의\n\"generated from\" 표시), 학생 저장소들의 포크 원본이므로 포크 수가 0보다 클 것으로 예상된다. 비교군은 같은 기간(2024-07 이후)에\n생성된 비사본 검증 저장소와 2024년 이전에 생성된 검증 저장소.\n표본: seed 20261030으로 사본 40개, 같은 기간 비사본 40개, 2024년 이전 비사본 20개(검증 저장소, 테스트 조직 제외).\n절차: 각 저장소의 공개 페이지(https://github.com/{owner}/{repo})에서 포크 수 표시(\"<strong>N</strong> forks\")와 \"generated from\",\n\"forked from\" 문구를 읽는다. 이 연구에서는 분석 환경의 네트워크 제한 때문에 같은 표본과 같은 판별식을 저자의 브라우저에서 실행했고\n(2026-10-30), 그 집계를 아래 RESULT에 기록했다. 네트워크가 허용되는 환경에서는 이 스크립트를 그대로 실행해 재현할 수 있다.",
+ "groups": {
+  "copy_after_2024_07": {
+   "sampled": 40,
+   "pages_read": 40,
+   "with_forks": 28,
+   "median_forks": 3,
+   "generated_from_template": 30,
+   "forked_from": 0
+  },
+  "noncopy_after_2024_07": {
+   "sampled": 40,
+   "pages_read": 40,
+   "with_forks": 9,
+   "median_forks": 0,
+   "generated_from_template": 10,
+   "forked_from": 0
+  },
+  "noncopy_before_2024": {
+   "sampled": 20,
+   "pages_read": 20,
+   "with_forks": 2,
+   "median_forks": 0,
+   "generated_from_template": 12,
+   "forked_from": 0
+  }
+ }
+}

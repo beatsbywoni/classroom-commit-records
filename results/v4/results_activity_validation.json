@@ -1,0 +1,142 @@
+{
+ "v3_categories": {
+  "inherited (shared SHA)": {
+   "n": 5553,
+   "pre_creation_1d": 0.5514,
+   "pre_creation_0": 0.8831,
+   "name_match": 0.0573,
+   "kept_v4": 0.0913
+  },
+  "staff-like": {
+   "n": 4474,
+   "pre_creation_1d": 0.0063,
+   "pre_creation_0": 0.0074,
+   "name_match": 0.1229,
+   "kept_v4": 0.1227
+  },
+  "student": {
+   "n": 116151,
+   "pre_creation_1d": 0.0577,
+   "pre_creation_0": 0.0632,
+   "name_match": 0.3798,
+   "kept_v4": 0.9421
+  }
+ },
+ "v3_categories_by_era": [
+  {
+   "v3cls": "inherited (shared SHA)",
+   "era": "post",
+   "n": 946,
+   "pre_creation_1d": 0.3964,
+   "name_match": 0.0148
+  },
+  {
+   "v3cls": "inherited (shared SHA)",
+   "era": "pre",
+   "n": 4607,
+   "pre_creation_1d": 0.5832,
+   "name_match": 0.066
+  },
+  {
+   "v3cls": "staff-like",
+   "era": "post",
+   "n": 2840,
+   "pre_creation_1d": 0.0004,
+   "name_match": 0.0697
+  },
+  {
+   "v3cls": "staff-like",
+   "era": "pre",
+   "n": 1634,
+   "pre_creation_1d": 0.0165,
+   "name_match": 0.2154
+  },
+  {
+   "v3cls": "student",
+   "era": "buffer",
+   "n": 252,
+   "pre_creation_1d": 0.0,
+   "name_match": 0.2024
+  },
+  {
+   "v3cls": "student",
+   "era": "post",
+   "n": 76163,
+   "pre_creation_1d": 0.0106,
+   "name_match": 0.3761
+  },
+  {
+   "v3cls": "student",
+   "era": "pre",
+   "n": 39736,
+   "pre_creation_1d": 0.1483,
+   "name_match": 0.3881
+  }
+ ],
+ "transitions": {
+  "v3_student_to_v4_excluded": 6723,
+  "v3_excluded_to_v4_student": 1056,
+  "v3_student": 116151,
+  "v4_student": 110484,
+  "n_nonbot": 126178
+ },
+ "v4_exclusion_reasons": {
+  "pre_existing_history": 11629,
+  "instructor_push_shared_ge5": 133,
+  "staff_like_unmatched": 3932
+ },
+ "v4_kept_name_match_share": 0.40263748597081933,
+ "v4_kept_name_match_by_era": {
+  "buffer": 0.2024,
+  "post": 0.3795,
+  "pre": 0.4553
+ },
+ "manual_review": {
+  "procedure": "20 commits drawn at random (seed 7) from each of six rule categories under the previous rule (verified Classroom repositories outside test organizations); each commit judged from its subject line, repository name, time relative to repository creation, number of repositories sharing the SHA, and whether the author's identifiers match the repository name; categories: student work in this repository, pre-existing or instructor/platform content, undeterminable.",
+  "rows": [
+   {
+    "category": "shared SHA, committed after repository creation",
+    "pool": 649,
+    "student": 16,
+    "instructor_or_history": 0,
+    "undeterminable": 4
+   },
+   {
+    "category": "shared SHA, committed before repository creation",
+    "pool": 4904,
+    "student": 0,
+    "instructor_or_history": 20,
+    "undeterminable": 0
+   },
+   {
+    "category": "staff-like author whose identifiers match the repository name",
+    "pool": 632,
+    "student": 20,
+    "instructor_or_history": 0,
+    "undeterminable": 0
+   },
+   {
+    "category": "staff-like author, no match",
+    "pool": 3960,
+    "student": 2,
+    "instructor_or_history": 17,
+    "undeterminable": 1
+   },
+   {
+    "category": "retained, committed before repository creation",
+    "pool": 7335,
+    "student": 2,
+    "instructor_or_history": 14,
+    "undeterminable": 4
+   },
+   {
+    "category": "retained, author does not match repository name",
+    "pool": 65242,
+    "student": 17,
+    "instructor_or_history": 2,
+    "undeterminable": 1
+   }
+  ],
+  "note": "In the fifth category all 14 history commits were committed more than one day before repository creation and the 6 others within one day, which is the basis of the one-day threshold in the revised rule."
+ }
+}

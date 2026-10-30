@@ -1,0 +1,365 @@
+{
+ "procedure": "Stratified random sample (seed 20261030), up to 8 commits per cell of rule category x period (repository created before 2022-12-01 or from 2023-01-01) x organization size (large: the organizations that together hold half of the non-bot commits). Judgments S (student work in this repository), I (pre-existing history, instructor or platform content), U (undeterminable) from the recorded evidence.",
+ "n_large_orgs": 8,
+ "n_orgs": 589,
+ "cells": [
+  {
+   "cat": "excl_history",
+   "period": "post",
+   "orgsize": "large",
+   "pop": 219,
+   "n": 8,
+   "S": 1,
+   "I": 4,
+   "U": 3
+  },
+  {
+   "cat": "excl_history",
+   "period": "post",
+   "orgsize": "small",
+   "pop": 831,
+   "n": 8,
+   "S": 3,
+   "I": 5,
+   "U": 0
+  },
+  {
+   "cat": "excl_history",
+   "period": "pre",
+   "orgsize": "large",
+   "pop": 22,
+   "n": 8,
+   "S": 1,
+   "I": 7,
+   "U": 0
+  },
+  {
+   "cat": "excl_history",
+   "period": "pre",
+   "orgsize": "small",
+   "pop": 10244,
+   "n": 8,
+   "S": 0,
+   "I": 8,
+   "U": 0
+  },
+  {
+   "cat": "excl_push",
+   "period": "post",
+   "orgsize": "large",
+   "pop": 117,
+   "n": 8,
+   "S": 0,
+   "I": 8,
+   "U": 0
+  },
+  {
+   "cat": "excl_push",
+   "period": "pre",
+   "orgsize": "small",
+   "pop": 16,
+   "n": 8,
+   "S": 0,
+   "I": 0,
+   "U": 8
+  },
+  {
+   "cat": "excl_staff",
+   "period": "post",
+   "orgsize": "large",
+   "pop": 2483,
+   "n": 8,
+   "S": 4,
+   "I": 4,
+   "U": 0
+  },
+  {
+   "cat": "excl_staff",
+   "period": "post",
+   "orgsize": "small",
+   "pop": 92,
+   "n": 8,
+   "S": 4,
+   "I": 3,
+   "U": 1
+  },
+  {
+   "cat": "excl_staff",
+   "period": "pre",
+   "orgsize": "large",
+   "pop": 680,
+   "n": 8,
+   "S": 3,
+   "I": 4,
+   "U": 1
+  },
+  {
+   "cat": "excl_staff",
+   "period": "pre",
+   "orgsize": "small",
+   "pop": 610,
+   "n": 8,
+   "S": 3,
+   "I": 5,
+   "U": 0
+  },
+  {
+   "cat": "kept_match",
+   "period": "post",
+   "orgsize": "large",
+   "pop": 23276,
+   "n": 8,
+   "S": 8,
+   "I": 0,
+   "U": 0
+  },
+  {
+   "cat": "kept_match",
+   "period": "post",
+   "orgsize": "small",
+   "pop": 5523,
+   "n": 8,
+   "S": 8,
+   "I": 0,
+   "U": 0
+  },
+  {
+   "cat": "kept_match",
+   "period": "pre",
+   "orgsize": "large",
+   "pop": 4616,
+   "n": 8,
+   "S": 8,
+   "I": 0,
+   "U": 0
+  },
+  {
+   "cat": "kept_match",
+   "period": "pre",
+   "orgsize": "small",
+   "pop": 11012,
+   "n": 8,
+   "S": 8,
+   "I": 0,
+   "U": 0
+  },
+  {
+   "cat": "kept_nomatch",
+   "period": "post",
+   "orgsize": "large",
+   "pop": 28298,
+   "n": 8,
+   "S": 7,
+   "I": 1,
+   "U": 0
+  },
+  {
+   "cat": "kept_nomatch",
+   "period": "post",
+   "orgsize": "small",
+   "pop": 15071,
+   "n": 8,
+   "S": 6,
+   "I": 0,
+   "U": 2
+  },
+  {
+   "cat": "kept_nomatch",
+   "period": "pre",
+   "orgsize": "large",
+   "pop": 3582,
+   "n": 8,
+   "S": 7,
+   "I": 1,
+   "U": 0
+  },
+  {
+   "cat": "kept_nomatch",
+   "period": "pre",
+   "orgsize": "small",
+   "pop": 15062,
+   "n": 8,
+   "S": 6,
+   "I": 1,
+   "U": 1
+  }
+ ],
+ "by_category": {
+  "excl_history": {
+   "pop": 11316,
+   "n": 32,
+   "S": 5,
+   "I": 24,
+   "U": 3,
+   "w_S": 0.030200600919052665,
+   "w_I": 0.9625419759632379,
+   "w_U": 0.0072574231177094375
+  },
+  "excl_push": {
+   "pop": 133,
+   "n": 16,
+   "S": 0,
+   "I": 8,
+   "U": 8,
+   "w_S": 0.0,
+   "w_I": 0.8796992481203008,
+   "w_U": 0.12030075187969924
+  },
+  "excl_staff": {
+   "pop": 3865,
+   "n": 32,
+   "S": 14,
+   "I": 16,
+   "U": 2,
+   "w_S": 0.45827943078913325,
+   "w_I": 0.5167529107373868,
+   "w_U": 0.02496765847347995
+  },
+  "kept_match": {
+   "pop": 44427,
+   "n": 32,
+   "S": 32,
+   "I": 0,
+   "U": 0,
+   "w_S": 1.0,
+   "w_I": 0.0,
+   "w_U": 0.0
+  },
+  "kept_nomatch": {
+   "pop": 62013,
+   "n": 32,
+   "S": 26,
+   "I": 3,
+   "U": 3,
+   "w_S": 0.814260719526551,
+   "w_I": 0.09462128908454678,
+   "w_U": 0.09111799138890234
+  }
+ },
+ "weighted": {
+  "kept_not_student": 0.05512730176625329,
+  "kept_undeterminable": 0.05308624577226606,
+  "excluded_student": 0.13797832049105394,
+  "excluded_undeterminable": 0.012708959122371686,
+  "pre_large": {
+   "kept_not_student": 0.05461697975115882,
+   "kept_undeterminable": 0.0,
+   "excluded_student": 0.36716524216524216,
+   "excluded_undeterminable": 0.12108262108262108
+  },
+  "pre_small": {
+   "kept_not_student": 0.0722079466134847,
+   "kept_undeterminable": 0.0722079466134847,
+   "excluded_student": 0.021044158233670653,
+   "excluded_undeterminable": 0.0014719411223551057
+  },
+  "post_large": {
+   "kept_not_student": 0.06858591538372048,
+   "kept_undeterminable": 0.0,
+   "excluded_student": 0.45011528910961335,
+   "excluded_undeterminable": 0.029132671159985808
+  },
+  "post_small": {
+   "kept_not_student": 0.0,
+   "kept_undeterminable": 0.1829537729435758,
+   "excluded_student": 0.3874593716143012,
+   "excluded_undeterminable": 0.012459371614301192
+  }
+ },
+ "variants_vs_v4": {
+  "v3": {
+   "to_excluded": 986,
+   "to_student": 6630,
+   "student": 112084
+  },
+  "v4_d0": {
+   "to_excluded": 577,
+   "to_student": 0,
+   "student": 105863
+  },
+  "v4_shared": {
+   "to_excluded": 437,
+   "to_student": 0,
+   "student": 106003
+  },
+  "v4_staff3": {
+   "to_excluded": 3397,
+   "to_student": 0,
+   "student": 103043
+  },
+  "v4_staff10": {
+   "to_excluded": 0,
+   "to_student": 932,
+   "student": 107372
+  },
+  "v4_nostaff": {
+   "to_excluded": 0,
+   "to_student": 3865,
+   "student": 110305
+  },
+  "v4_strict": {
+   "to_excluded": 62013,
+   "to_student": 0,
+   "student": 44427
+  }
+ },
+ "v4_student": 106440,
+ "n_nonbot": 121754,
+ "staff_breadth": {
+  "50plus": {
+   "commits": 2458,
+   "share": 0.6359637774902975,
+   "top_org_commits": 2458,
+   "S": 0,
+   "I": 7,
+   "U": 0
+  },
+  "5to49": {
+   "commits": 1407,
+   "share": 0.36403622250970247,
+   "top_org_commits": 502,
+   "S": 14,
+   "I": 9,
+   "U": 2
+  }
+ },
+ "previous_rule_checks": {
+  "n_nonbot": 126178,
+  "shared_before": {
+   "commits": 4904,
+   "before_creation": 1.0,
+   "before_creation_1d": 0.6243882544861338,
+   "owner_match": 0.04261827079934747
+  },
+  "shared_after": {
+   "commits": 649,
+   "before_creation": 0.0,
+   "before_creation_1d": 0.0,
+   "owner_match": 0.1679506933744222
+  },
+  "staff_match": {
+   "commits": 550,
+   "before_creation": 0.0018181818181818182,
+   "before_creation_1d": 0.0018181818181818182,
+   "owner_match": 1.0
+  },
+  "staff_nomatch": {
+   "commits": 3924,
+   "before_creation": 0.00815494393476045,
+   "before_creation_1d": 0.006880733944954129,
+   "owner_match": 0.0
+  },
+  "kept_before": {
+   "commits": 7338,
+   "before_creation": 1.0,
+   "before_creation_1d": 0.9126464976832924,
+   "owner_match": 0.07904061052057781
+  },
+  "kept_nomatch_after": {
+   "commits": 65277,
+   "before_creation": 0.0,
+   "before_creation_1d": 0.0,
+   "owner_match": 0.0
+  }
+ }
+}
