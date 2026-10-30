@@ -94,9 +94,9 @@ if __name__ == "__main__":
     # ---- appendix: natural units ----
     def natural(b, c):
         cp = b["cap"]["50"][c]; be, lo, hi = cp["beta"], cp["ci90_beta"][0], cp["ci90_beta"][1]; m = b["means"][c]
-        if c == "edit_size_log": return (f"{100*(math.exp(be)-1):+.0f}\\%", f"$[{100*(math.exp(lo)-1):+.0f}, {100*(math.exp(hi)-1):+.0f}]$", f"{math.expm1(m['pre']):.0f} / {math.expm1(m['post']):.0f} lines")
-        if c in ("large_insert_share_200", "burst_share_30", "test_touch_share"): return (f"{100*be:+.1f} pp", f"$[{100*lo:+.1f}, {100*hi:+.1f}]$", f"{100*m['pre']:.1f}\\% / {100*m['post']:.1f}\\%")
-        return (f"{be:+.3f}", f"$[{lo:+.3f}, {hi:+.3f}]$", f"{m['pre']:.3f} / {m['post']:.3f}")
+        if c == "edit_size_log": return (f"${100*(math.exp(be)-1):+.0f}$\\%", f"$[{100*(math.exp(lo)-1):+.0f}, {100*(math.exp(hi)-1):+.0f}]$", f"{math.expm1(m['pre']):.0f} / {math.expm1(m['post']):.0f} lines")
+        if c in ("large_insert_share_200", "burst_share_30", "test_touch_share"): return (f"${100*be:+.1f}$ pp", f"$[{100*lo:+.1f}, {100*hi:+.1f}]$", f"{100*m['pre']:.1f}\\% / {100*m['post']:.1f}\\%")
+        return (f"${be:+.3f}$", f"$[{lo:+.3f}, {hi:+.3f}]$", f"{m['pre']:.3f} / {m['post']:.3f}")
     L = [r"\begin{table}[!htbp]", r"\caption{Capped estimates (cap 50) in natural units, from the same fits and bootstrap replicates as the standardized estimates, with unadjusted means of the two periods. Edit size is modeled as $\log(1+M)$, where $M$ is a repository's median lines changed per commit; its estimate and interval are $100[\exp(\beta)-1]$, the modeled percent difference in $1+M$, and its means are $\exp(\overline{\log(1+M)})-1$ lines. The other signals are on their own scales (pp: percentage points).}", r"\label{tab:natural}",
          r"\scriptsize", r"\setlength{\tabcolsep}{3pt}", r"\begin{tabular}{@{}l l l l l l l@{}}", r"\toprule", r" & \multicolumn{3}{l}{Post $-$ pre} & \multicolumn{3}{l}{Agentic $-$ early post} \\", r"Signal & Cap 50 & [90\% CI] & Means & Cap 50 & [90\% CI] & Means \\", r"\midrule"]
     for c in SIG6:
