@@ -1,0 +1,18 @@
+\begin{table}[!htbp]
+\caption{Checks of the previous attribution rule, non-bot commits in verified Classroom repositories outside test organizations. Before creation: committer timestamp earlier than the repository's creation. Owner match: author identifiers match the repository name. Review: 20 commits drawn at random from each category and judged, under a protocol similar to that of Section~\ref{sec:attribution}, as student work in the repository, pre-existing history or instructor or platform content, or undeterminable (only the counts were recorded). The review drew on an earlier tabulation of the same categories, whose sizes differ in four rows (632, 3,960, 7,335, and 65,242).}
+\label{tab:activity}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{5.6cm} r r r r@{}}
+\toprule
+Category under the previous rule & Commits & Before creation & Owner match & Review \\
+\midrule
+Shared SHA (``inherited''), committed before creation & 4,904 & 100\% & 4\% & 0/20/0 \\
+Shared SHA (``inherited''), committed after creation & 649 & 0\% & 17\% & 16/0/4 \\
+Staff-like author, owner match & 550 & 0\% & 100\% & 20/0/0 \\
+Staff-like author, no owner match & 3,924 & 1\% & 0\% & 2/17/1 \\
+Kept as student, committed before creation & 7,338 & 100\% & 8\% & 2/14/4 \\
+Kept as student, no owner match, after creation & 65,277 & 0\% & 0\% & 17/2/1 \\
+\bottomrule
+\end{tabular}
+\end{table}
