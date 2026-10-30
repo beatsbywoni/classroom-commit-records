@@ -1,0 +1,15 @@
+{
+  "title": "GitHub Classroom commit records before and after generative AI: replication package (activity attribution, platform change, organization weighting)",
+  "upload_type": "dataset",
+  "description": "<p>Replication package for a study of commit records in public GitHub Classroom repositories (58,516 repositories collected in August 2026, shortly before GitHub retired Classroom). It contains the collection, extraction, and analysis scripts; hashed derived tables at the commit and repository level; the results of every analysis in machine-readable form; the preregistered protocol and its results; the post-registration decision log (D1 to D10, E1 to E14); and a log of generative-AI use. Raw commit logs and a manual-review file containing commit text are not distributed.</p>",
+  "creators": [
+    {
+      "name": "Jeong, Hongwon",
+      "affiliation": "Center for Creative Convergence Education, Hanyang University ERICA",
+      "orcid": "0009-0003-7908-7478"
+    }
+  ],
+  "license": "CC-BY-4.0",
+  "access_right": "open",
+  "keywords": ["GitHub Classroom", "commit histories", "computing education", "generative AI", "learning analytics", "process data", "replication package"]
+}
