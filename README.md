@@ -53,4 +53,4 @@ Steps 4–10 run from the distributed tables on a laptop (Python 3.10+, pandas, 
 
 ## Citation
 
-[Zenodo DOI to be inserted.]
+Jeong, H. (2026). GitHub Classroom commit records before and after generative AI: replication package (activity attribution, platform change, organization weighting) (v1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23797543 (all versions: https://doi.org/10.5281/zenodo.23797542)
