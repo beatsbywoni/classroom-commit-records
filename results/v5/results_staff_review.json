@@ -1,0 +1,92 @@
+{
+ "population": 3865,
+ "sampled": 32,
+ "by_breadth": {
+  "50plus": {
+   "pop": 2458,
+   "n": 7,
+   "S": 0,
+   "I": 7,
+   "U": 0,
+   "orgs_in_pop": 1,
+   "orgs_in_sample": 1
+  },
+  "5to49": {
+   "pop": 1407,
+   "n": 25,
+   "S": 14,
+   "I": 9,
+   "U": 2,
+   "orgs_in_pop": 24,
+   "orgs_in_sample": 9
+  }
+ },
+ "cells": [
+  {
+   "period": "post",
+   "orgsize": "large",
+   "breadth": "50plus",
+   "pop": 1898,
+   "n": 3,
+   "S": 0,
+   "I": 3,
+   "U": 0
+  },
+  {
+   "period": "post",
+   "orgsize": "large",
+   "breadth": "5to49",
+   "pop": 585,
+   "n": 5,
+   "S": 4,
+   "I": 1,
+   "U": 0
+  },
+  {
+   "period": "post",
+   "orgsize": "small",
+   "breadth": "5to49",
+   "pop": 92,
+   "n": 8,
+   "S": 4,
+   "I": 3,
+   "U": 1
+  },
+  {
+   "period": "pre",
+   "orgsize": "large",
+   "breadth": "50plus",
+   "pop": 560,
+   "n": 4,
+   "S": 0,
+   "I": 4,
+   "U": 0
+  },
+  {
+   "period": "pre",
+   "orgsize": "large",
+   "breadth": "5to49",
+   "pop": 120,
+   "n": 4,
+   "S": 3,
+   "I": 0,
+   "U": 1
+  },
+  {
+   "period": "pre",
+   "orgsize": "small",
+   "breadth": "5to49",
+   "pop": 610,
+   "n": 8,
+   "S": 3,
+   "I": 5,
+   "U": 0
+  }
+ ],
+ "design_weighted_S": 0.45827943078913325,
+ "design_weighted_U": 0.02496765847347995,
+ "poststratified_S": 0.21545924967658472,
+ "poststratified_population_covered": 3865,
+ "sample_orgs": 10,
+ "sample_repos": 26
+}

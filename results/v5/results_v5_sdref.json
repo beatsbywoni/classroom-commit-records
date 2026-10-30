@@ -1,0 +1,45 @@
+{
+ "sd_ref": {
+  "era": {
+   "edit_size_log": 2.5378237172258356,
+   "large_insert_share_200": 0.2902215621167374,
+   "burst_share_30": 0.31771307701788015,
+   "samefile_rerun_rate_k3": 4.360819521492836,
+   "test_touch_share": 0.1624523707470101,
+   "time_dispersion": 0.284938717069903,
+   "msg_informativeness": 0.04981950600158286
+  },
+  "agent": {
+   "edit_size_log": 2.492743045968659,
+   "large_insert_share_200": 0.2976605809712325,
+   "burst_share_30": 0.31661529415466083,
+   "samefile_rerun_rate_k3": 5.665544183266134,
+   "test_touch_share": 0.14174100895069355,
+   "time_dispersion": 0.27689071123020953,
+   "msg_informativeness": 0.054756561697992874
+  }
+ },
+ "n_signal": {
+  "era": {
+   "edit_size_log": 4940,
+   "large_insert_share_200": 4940,
+   "burst_share_30": 4941,
+   "samefile_rerun_rate_k3": 4941,
+   "test_touch_share": 4941,
+   "time_dispersion": 4106,
+   "msg_informativeness": 4915
+  },
+  "agent": {
+   "edit_size_log": 2875,
+   "large_insert_share_200": 2875,
+   "burst_share_30": 2875,
+   "samefile_rerun_rate_k3": 2875,
+   "test_touch_share": 2875,
+   "time_dispersion": 2399,
+   "msg_informativeness": 2874
+  }
+ },
+ "checks": 224,
+ "check_failures": [],
+ "rule": "every standardized estimate of a contrast uses the SD of the signal in the primary sample of that contrast"
+}
