@@ -225,7 +225,7 @@ CONSTANT_PHRASES = [
     "(shaded band: $\\pm 0.10$)", "at 25 (down triangle), 50 (diamond, with 90\\%", "at caps of 25, 50, and 100", "at the cap of 50",
     "begun in 2022, falls in 2023 (capped 2023-versus-2022", "in July 2024 (", "of January 2024 (", "capped at 50",
     "(15 or 60 minutes)", "(500 lines, or the largest single insertion)", "of 500 lines in the agentic era", "the cap of 50 (", "more than 50, and a cap of 50",
-    "after mid-2024", "across 2024", "in 2024 was announced", "a 2024 change in how", "Claude Fable 5.1 and Claude Opus 5.5 for the October 2026", "for the August 2026 collection",
+    "after mid-2024", "across 2024", "in 2024 was announced", "a 2024 change in how", "Claude Fable 5.1 and Claude Opus 5.5 for the October 2026", "Claude Fable 5 for the August 2026 collection", "2nd CSEDM Data Challenge",
     "August 6, 2026, secondary-data", "SHA-256 manifest", "era-by-language 95th percentile", "(10,000)", "on 77 students",
     "margin $d = \\pm 0.10$", "(fake boundary at June 1, 2021)", "D1 to D10", "E1 to E15", "D1, D2, D4, D5, and D6",
     "(E1, E2, E3, E5, E11, E15)", "(E4, E9, E10, E14)", "(E7, E8, E12, E13, E14)", "(E6, E14, E15)", "caps of 25, 50, and 100",
