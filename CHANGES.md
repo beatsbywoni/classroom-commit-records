@@ -1,5 +1,11 @@
 # Changes between released versions of this package
 
+## v1.2.1 (October 31, 2026)
+
+- `AI_USE.md` names the model of the August 2026 sessions (Claude Fable 5), and the manuscript's Generative AI Disclosure does the same.
+- Appendix A and the data statement of the manuscript attribute both CodeWorkout release files (Spring and Fall 2019) to PSLC DataShop dataset 3458, whose Files tab lists them; `REFERENCE_CHECK.md` records the check.
+- `40_check_manuscript.py` lists the two new labels as constants. The archive description states the scope of the re-fit more precisely. No result changed.
+
 ## v1.2.0 (October 30, 2026): version submitted for review
 
 - Manuscript source: `manuscript/main.tex` (replaces `main_v6.tex`) with its bibliography reduced to the 39 cited works. Changes in the text: the natural-unit effect of edit size is described as a modeled percent difference in one plus the median lines per commit (the signal is `log(1 + median)`), and the table note gives the transformation; statements about large insertions, the retirement of Classroom, and the commit review were narrowed to what the evidence shows; Section 2.3 was folded into the end of Section 2.2; the methods statement on AI use (Section 3.6) and the Generative AI Disclosure were separated; Appendix B was shortened (the full decision log stays in `DEVIATIONS.md`); the ethics statement now says that no institutional ethics review was sought; the data statement now states what the package can and cannot re-run.
